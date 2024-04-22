@@ -1,7 +1,5 @@
-patente;marca;nombreC;apellidoC;kilometraje
-
-ABC100;Zanella;Mario;Gonzales;3000
-BDC210;Zanella;Juan;Perez;6000
-GJD090;Zanella;Lucas;Sanchez;5000
-LOP455;Zanella;Matias;Sanchez;1000
-MIL001;Zanella;Arnaldo;Videla;2000
+ABC100;A1001;Hamburguesa;30;50;3000
+BDC210;A1002;Papas;40;60;1000
+GJD090;A1003;Pizza;45;65;5000
+LOP455;A1004;Hamburguesa;20;40;3000
+MIL001;A1005;Pizza;15;35;5000

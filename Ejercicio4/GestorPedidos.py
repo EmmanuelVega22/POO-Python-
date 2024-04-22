@@ -7,4 +7,16 @@ Created on Mon Apr 22 14:31:43 2024
 
 class GestorPedidos:
     
-    pass
+    __listaMotos : list
+
+    def __init__(self):
+
+        self.__listaMotos = []
+
+    def getList(self):
+
+        return self.__listaMotos
+    def agregarPedido(self,newPedido):
+
+        self.__listaMotos.append(newPedido)
+
