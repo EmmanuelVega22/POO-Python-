@@ -1,5 +1,0 @@
-10,Alianza,10,5,5,12
-11,Chacarita,5,4,1,9
-12,Trinidad,8,2,6,8
-13,San Martin,4,8,-4,7
-14,Sportivo,3,4,-1,6
