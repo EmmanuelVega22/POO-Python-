@@ -4,76 +4,82 @@ from claseLibro import Libro
 from claseCD import CD
 class Lista:
 
-    __comienzo = Nodo
+    __cabeza = Nodo
 
 
     def __init__(self):
 
-        self.__comienzo = None
+        self.__cabeza = None
 
     def cargarPublicaciones(self):
-
-        if self.__comienzo == None:
-
-            titulo = input("Ingrese Titulo: ")
-            categoria = input("Ingrese Categoria: ")
-            precio_base = float(input("Ingrese Precio Base: "))
-
-            op = input("¿Es un libro o CD? (L/C)").upper()
-
-            if op == 'L':
-
-                autor = input("Ingrese Nombre Autor: ")
-                fecha = input("Ingrese Fecha de Edicion: ")
-                paginas = int(input("Ingrese Cantidad de Paginas: "))
-
-                publicacion = Libro(titulo,categoria,precio_base,autor,fecha,paginas)
+        
+        op = 'si'
+        
+        while op != 'NO':
             
-            elif op == 'C':
+            if self.__cabeza == None:
+    
+                titulo = input("Ingrese Titulo: ")
+                categoria = input("Ingrese Categoria: ")
+                precio_base = float(input("Ingrese Precio Base: "))
+    
+                tipo = input("¿Es un libro o CD? (L/C)").upper()
+    
+                if tipo == 'L':
+    
+                    autor = input("Ingrese Nombre Autor: ")
+                    fecha = input("Ingrese Fecha de Edicion: ")
+                    paginas = int(input("Ingrese Cantidad de Paginas: "))
+    
+                    publicacion = Libro(titulo,categoria,precio_base,autor,fecha,paginas)
+                
+                elif tipo == 'C':
+    
+                    tiempo_reprod = int(input("Ingrese Tiempo Reproduccion en minutos: "))
+                    narrador = input("Ingrese Narrador: ")
+    
+                    publicacion = CD(titulo,categoria,precio_base,tiempo_reprod,narrador)
+                
+                nodo = Nodo(publicacion)
+                self.__cabeza = nodo
+                        
+            else:
+                aux = self.__cabeza
 
-                tiempo_reprod = int(input("Ingrese Tiempo Reproduccion en minutos: "))
-                narrador = input("Ingrese Narrador: ")
-
-                publicacion = CD(titulo,categoria,precio_base,tiempo_reprod,narrador)
+                while aux.getSiguiente() != None:
+    
+                    aux = aux.getSiguiente()
+                
+                titulo = input("Ingrese Titulo: ")
+                categoria = input("Ingrese Categoria: ")
+                precio_base = float(input("Ingrese Precio Base: "))
+    
+                tipo = input("¿Es un libro o CD? (L/C)").upper()
+    
+                if tipo == 'L':
+    
+                    autor = input("Ingrese Nombre Autor: ")
+                    fecha = input("Ingrese Fecha de Edicion: ")
+                    paginas = int(input("Ingrese Cantidad de Paginas: "))
+    
+                    publicacion = Libro(titulo,categoria,precio_base,autor,fecha,paginas)
+    
+                elif tipo == 'C':
+    
+                    tiempo_reprod = int(input("Ingrese Tiempo Reproduccion en minutos: "))
+                    narrador = input("Ingrese Narrador: ")
+    
+                    publicacion = CD(titulo,categoria,precio_base,tiempo_reprod,narrador)
+                
+    
+                nodo = Nodo(publicacion)
+                aux.setSiguiente(nodo)
             
-            nodo = Nodo(publicacion)
-            self.__comienzo=nodo
-                    
-        else:
-            aux = self.__comienzo
-            while aux.getSiguiente() != None:
-
-                aux = aux.getSiguiente()
+            op = input("Cargar otra publicacion? (Si/No)").upper()
             
-            titulo = input("Ingrese Titulo: ")
-            categoria = input("Ingrese Categoria: ")
-            precio_base = float(input("Ingrese Precio Base: "))
-
-            op = input("¿Es un libro o CD? (L/C)").upper()
-
-            if op == 'L':
-
-                autor = input("Ingrese Nombre Autor: ")
-                fecha = input("Ingrese Fecha de Edicion: ")
-                paginas = int(input("Ingrese Cantidad de Paginas: "))
-
-                publicacion = Libro(titulo,categoria,precio_base,autor,fecha,paginas)
-
-            elif op == 'C':
-
-                tiempo_reprod = int(input("Ingrese Tiempo Reproduccion en minutos: "))
-                narrador = input("Ingrese Narrador: ")
-
-                publicacion = CD(titulo,categoria,precio_base,tiempo_reprod,narrador)
-            
-
-            nodo = Nodo(publicacion)
-            aux.setSiguiente(nodo)
-
-
     def mostrar(self):
 
-        aux = self.__comienzo
+        aux = self.__cabeza
 
         while aux!=None:
 
@@ -84,7 +90,7 @@ class Lista:
     def mostrar_tipo_publicaciones(self,posicion):
         
         contador = 0
-        aux = self.__comienzo
+        aux = self.__cabeza
         
         while aux != None:
             
@@ -102,23 +108,22 @@ class Lista:
             
             else:
                 contador +=1
-                aux = aux.getSiguiente()
-    
+                aux = aux.getSiguiente()            
     
     def mostrar_cantidad_publicaciones(self):
         
         cant_libros = 0
         cant_cd = 0
         
-        aux = self.__comienzo
+        aux = self.__cabeza
         
         while aux != None:
             
-            if isinstance(aux.getDato() ,Libro):
+            if isinstance(aux.getDato() ,Libro):#Pregunta si el nodo es de tipo Libro
                 
                 cant_libros +=1
             
-            elif isinstance(aux.getDato(),CD ):
+            elif isinstance(aux.getDato(),CD ):#Pregunta si el nodo es de tipo CD
                 
                 cant_cd +=1
             
@@ -129,7 +134,7 @@ class Lista:
         
     def mostrar_publicaciones_importe(self):
         
-        aux = self.__comienzo
+        aux = self.__cabeza
         
         while aux != None:
             
