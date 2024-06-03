@@ -1,0 +1,67 @@
+{
+    "__class__": "Lista",
+    "calefactores": [
+        {
+            "__class__": "CalefactorGasNatural",
+            "__atributos__": {
+                "marca": "Kolo",
+                "modelo": "2000",
+                "paisFabricacion": "Argentina",
+                "precio": 900.0,
+                "formaPago": "Cuotas",
+                "cuotas": 6,
+                "matricula": "EG2009",
+                "calorias": "300"
+            }
+        },
+        {
+            "__class__": "CalefactorElectrico",
+            "__atributos__": {
+                "marca": "Liliana",
+                "modelo": "2020",
+                "paisFabricacion": "Argentina",
+                "precio": 500.0,
+                "formaPago": "Contado",
+                "cuotas": 1,
+                "potenciaMaxima": "500watts"
+            }
+        },
+        {
+            "__class__": "CalefactorElectrico",
+            "__atributos__": {
+                "marca": "Gato",
+                "modelo": "1980",
+                "paisFabricacion": "Ecuador",
+                "precio": 770.0,
+                "formaPago": "Contado",
+                "cuotas": 1,
+                "potenciaMaxima": "400watts"
+            }
+        },
+        {
+            "__class__": "CalefactorGasNatural",
+            "__atributos__": {
+                "marca": "Puma",
+                "modelo": "Chile",
+                "paisFabricacion": "Chile",
+                "precio": 1000.0,
+                "formaPago": "Cuotas",
+                "cuotas": 12,
+                "matricula": "EG2002",
+                "calorias": "500"
+            }
+        },
+        {
+            "__class__": "CalefactorElectrico",
+            "__atributos__": {
+                "marca": "Moho",
+                "modelo": "2024",
+                "paisFabricacion": "Peru",
+                "precio": 1500.0,
+                "formaPago": "Contado",
+                "cuotas": 1,
+                "potenciaMaxima": "200Watts"
+            }
+        }
+    ]
+}
