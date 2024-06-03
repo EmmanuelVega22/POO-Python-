@@ -1,0 +1,134 @@
+/*************************************
+                General
+**************************************/
+
+
+body{
+	width: 100%;
+	font-family: georgia,times,serif;
+	color: #333;
+	background:#CB4335;
+
+	
+	background:#CB4335;
+	background: url(fondo.jpg);
+  	background-size: cover;
+	font-size: 1.2rem;
+	line-height: 1.6em;
+	margin: 0;
+}
+
+.mensaje h1{
+	line-height: 1.4em;
+	font-size: 1.4rem;
+}
+
+.mensaje p{
+
+	margin-bottom: 1em;
+}
+
+/*************************************
+                MENU
+**************************************/
+
+
+.header{
+
+	background:#333;
+	color:white;
+}
+
+.header a{
+	color:white;
+	text-decoration:none;
+  
+}
+
+
+
+.menu ul {
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu ul li{
+
+	display: inline-block;
+}
+
+.menu ul li a{
+
+	display: block;
+	padding: 0.5rem 1rem;
+	transition: all 0.4s linear;
+	border-radius: 5px;
+
+}
+
+.menu ul li a:hover{
+
+	background: #CB4335 ;
+
+}
+
+.logo{
+
+	letter-spacing: 15px;
+	font-size:1.3em;
+
+}
+
+.logo img{
+
+	width: 2.2em;
+}
+
+.logo-container{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.container{
+
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+
+/*************************************
+               SECTION - 1
+**************************************/
+
+
+.section-principal .mensaje{
+
+	height: 90%;
+	left: -5px;
+}
+
+
+.section-principal{
+	height: 120vh;
+	padding: 50px;
+	background:tomato;
+	color:rgb(240,240,240);
+	text-align: center;
+  	background: url(fondo.jpg);
+  	background-size: cover;
+}
+
+/*
+.section-principal .mensaje{
+
+	width: 300px;
+	height: auto;
+	float: left;
+	overflow: hidden;
+	
+}*/

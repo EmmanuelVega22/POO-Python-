@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bienvenido Repartidor</title>
+</head>
+<body>
+
+	{% if hora < 12 %}
+		<h1> Buenos días {{ nombre }} </h1>
+	
+	{% elif hora < 21 %}
+		<h1> Buenas tardes {{ nombre }} </h1>
+
+	{% else %}
+		<h1> Buenas noches {{ nombre }} </h1>
+	{% endif %}
+		<h2> Ver Sucursales </h2>
+</body>
+</html>
