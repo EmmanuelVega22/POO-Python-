@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bienvenido</title>
+</head>
+<body>
+
+	{% if hora < 12 %}
+		<h1> Buenos días {{ datos.texto_email }} </h1>
+	
+	{% elif hora < 21 %}
+		<h1> Buenas tardes {{ datos.texto_email }} </h1>
+
+	{% else %}
+		<h1> Buenas noches {{ datos.texto_email }} </h1>
+	{% endif %}
+		<h2> Recibirás las notificaciones en el correo {{ datos.email }} </h2>
+</body>
+</html>
