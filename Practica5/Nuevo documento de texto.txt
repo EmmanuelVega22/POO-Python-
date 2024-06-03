@@ -1,4 +1,0 @@
-conda update anaconda
-conda install spyder=5.5.1
-
-sqliteviewer.app
