@@ -2,16 +2,18 @@
 """
 @author: Emmanuel
 """
+
 from claseCalefactor import Calefactor
 
 class CalefactorGasNatural(Calefactor):
     
-    __matricula:str
+    __matricula: str
     __calorias: str
     
-    def __init__(self,marca,modelo,paisFabricacion,precio,formaPago,cuotas,matricula,calorias):
+    
+    def __init__(self,marca,modelo,pais,precio,forma_pago,cant_cuotas,matricula,calorias):
         
-        super().__init__(marca,modelo,paisFabricacion,precio,formaPago,cuotas)
+        super().__init__(marca,modelo,pais,precio,forma_pago,cant_cuotas,matricula,calorias)
         
         self.__matricula = matricula
         self.__calorias = calorias
@@ -21,10 +23,11 @@ class CalefactorGasNatural(Calefactor):
         
         cadena = super().__str__()
         
-        cadena += 'Tipo GasNatural:\n'
         cadena += 'Matricula: ' + self.__matricula + '\n'
         cadena += 'Calorias: ' + self.__calorias + '\n'
+        
         return cadena
+    
     
     def getMatricula(self):
         
@@ -34,23 +37,8 @@ class CalefactorGasNatural(Calefactor):
         
         return self.__calorias
     
-    def toJSON(self):
-        
-        d = dict(
-                __class__=self.__class__.__name__,
-                __atributos__=dict(
-                        marca = self.getMarca(),
-                        modelo = self.getModelo(),
-                        paisFabricacion = self.getPaisFabricacion(),
-                        precio = self.getPrecio(),
-                        formaPago = self.getFormaPago(),
-                        cuotas = self.getCuotas(),
-                        matricula = self.__matricula,
-                        calorias = self.__calorias
-                        )
-                )
-        return d
-    
     def importeDeVenta(self):
         
         pass
+        
+        
