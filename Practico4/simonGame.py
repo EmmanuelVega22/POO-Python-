@@ -56,34 +56,39 @@ class SimonGame:
         self.colores = ["green","red","yellow","blue"]
         self.dificultad_elegida = ttk.Combobox(self.app, values=['Principiante', 'Experto', 'Super Experto'])
         self.dificultad = None
+        self.timer = 0
         self.gestor = GestorJugadores()
         self.gestor.cargar_puntajes()
         self.nombre_jugador = simpledialog.askstring("Nombre del Jugador", "Ingrese su nombre:")
         
         app.resizable(width=False, height=False)
         
-
         
-        label_jugador = tk.Label(self.app,text=self.nombre_jugador)
-        label_jugador.grid(row=0,column=0, padx=5,pady=5)
+        self.label_jugador = tk.Label(self.app,text=self.nombre_jugador)
+        self.label_jugador.grid(row=0,column=0, padx=5,pady=5)
         
-        label_puntaje = tk.Label(self.app,text=self.puntaje)
-        label_puntaje.grid(row=0,column=1,padx=5,pady=5)
+        self.label_puntaje = tk.Label(self.app,text=self.puntaje)
+        self.label_puntaje.grid(row=0,column=1,padx=5,pady=5)
         
-        label_dificultad = tk.Label(self.app,text='Dificultad')
-        label_dificultad.grid(row=1,column=0,padx=5,pady=5)
+        self.label_dificultad = tk.Label(self.app,text='Dificultad')
+        self.label_dificultad.grid(row=1,column=0,padx=5,pady=5)
+        
+        self.etiqueta = tk.Label(self.app, text="")
         
         self.dificultad_elegida['state'] = 'readonly'
         self.dificultad_elegida.bind("<<ComboboxSelected>>", self.seleccionar_dificultad)
         self.dificultad_elegida.grid(row=1,column=1,padx=10,pady=10)
         
-        self.ventana() #Crear el tamaño y botones de la ventana
+        
+        self.ventana()
 
         self.menu()
         
         
     def seleccionar_dificultad(self, event):
         self.dificultad = self.dificultad_elegida.get()
+        self.ventana()
+
         self.comenzar_juego()
     
     def comenzar_juego(self):
@@ -92,6 +97,24 @@ class SimonGame:
     
     def ventana(self):
         
+        if self.dificultad == 'Experto':
+            
+            self.timer = 30
+            self.etiqueta.config(text=self.timer)
+            self.etiqueta.grid(row=2,column=1,padx=5,pady=5)
+            self.actualizar_temporizador()
+
+
+            
+        elif self.dificultad == 'Super Experto':
+            
+            self.timer = 30
+            self.etiqueta.config(text=self.timer)
+            self.etiqueta.grid(row=2,column=0,padx=5,pady=5)
+            self.actualizar_temporizador()
+
+
+
         
         for color in self.colores:
             
@@ -99,21 +122,21 @@ class SimonGame:
             
             if color == 'green':
                 
-                botonColor.grid(row=2,column=0)
+                botonColor.grid(row=3,column=0)
             
             elif color == 'red':
                 
-                botonColor.grid(row=2,column=1)
+                botonColor.grid(row=3,column=1)
             
             elif color == 'yellow':
                 
-                botonColor.grid(row=3,column=0)
+                botonColor.grid(row=4,column=0)
             
             elif color == 'blue':
                 
-                botonColor.grid(row=3,column=1)
+                botonColor.grid(row=4,column=1)
 
-            
+
             botonColor.bind("<Button-1>", lambda e, col=color: self.apretar_boton(col))
             self.botones[color] = botonColor
 
@@ -124,12 +147,12 @@ class SimonGame:
         if self.secuencia_jugador == self.secuencia[:len(self.secuencia_jugador)]:
             if len(self.secuencia_jugador) == len(self.secuencia):
                 self.deshabilitar_botones()
-                self.app.after(1000, self.rondaSiguiente)
+                self.app.after(1000 , self.rondaSiguiente)
                 #after funciona como un temporizador ejecuta el rondaSiguiente luego de 1000seg o milisegundo
                 #para darle tiempo al jugador y ademas ejecutar otra cosas antes
                 self.puntaje +=1
-                label_puntaje = tk.Label(self.app,text=self.puntaje)
-                label_puntaje.grid(row=0,column=1,padx=5,pady=5)
+                self.timer = 30
+                self.label_puntaje.config(text=self.puntaje)
         else:
             self.game_over()
         
@@ -155,7 +178,7 @@ class SimonGame:
     def mostrar_secuencia(self):
         for index, color in enumerate(self.secuencia):
             self.app.after(1000 * index, lambda col=color: self.iluminar_boton(col))
-        self.app.after(1000 * len(self.secuencia), self.habilitar_botones)
+        self.app.after( 1000 * len(self.secuencia), self.habilitar_botones)
 
 
     def habilitar_botones(self):
@@ -202,7 +225,19 @@ class SimonGame:
         
         boton_cerrar = tk.Button(galeriaPuntaje,text="Cerrar",command=self.ventana())
         boton_cerrar.grid(row=2,column=0,padx=5,pady=5)
-
+    
+    def actualizar_temporizador(self):
+        
+        self.etiqueta.config(text=f"Tiempo restante:\t\t{self.timer}")
+        
+        if self.timer == 0:
+        
+            self.game_over()
+        
+        else:
+            self.timer -= 1
+            self.app.after(1000, self.actualizar_temporizador)
+        
         
 if __name__ == '__main__':
     
