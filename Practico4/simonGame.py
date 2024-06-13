@@ -57,6 +57,8 @@ class SimonGame:
         self.dificultad_elegida = ttk.Combobox(self.app, values=['Principiante', 'Experto', 'Super Experto'])
         self.dificultad = None
         self.timer = 0
+        self.timer_secuencia = 0
+        self.timer_dificultad = 0
         self.gestor = GestorJugadores()
         self.gestor.cargar_puntajes()
         self.nombre_jugador = simpledialog.askstring("Nombre del Jugador", "Ingrese su nombre:")
@@ -100,6 +102,8 @@ class SimonGame:
         if self.dificultad == 'Experto':
             
             self.timer = 30
+            self.timer_dificultad = 200
+            self.timer_secuencia = 500
             self.etiqueta.config(text=self.timer)
             self.etiqueta.grid(row=2,column=1,padx=5,pady=5)
             self.actualizar_temporizador()
@@ -109,6 +113,8 @@ class SimonGame:
         elif self.dificultad == 'Super Experto':
             
             self.timer = 30
+            self.timer_dificultad = 400
+            self.timer_secuencia = 700
             self.etiqueta.config(text=self.timer)
             self.etiqueta.grid(row=2,column=0,padx=5,pady=5)
             self.actualizar_temporizador()
@@ -147,7 +153,7 @@ class SimonGame:
         if self.secuencia_jugador == self.secuencia[:len(self.secuencia_jugador)]:
             if len(self.secuencia_jugador) == len(self.secuencia):
                 self.deshabilitar_botones()
-                self.app.after(1000 , self.rondaSiguiente)
+                self.app.after(1000-self.timer_secuencia , self.rondaSiguiente)
                 #after funciona como un temporizador ejecuta el rondaSiguiente luego de 1000seg o milisegundo
                 #para darle tiempo al jugador y ademas ejecutar otra cosas antes
                 self.puntaje +=1
@@ -161,7 +167,7 @@ class SimonGame:
         botonColor = self.botones[color]
         color_original = botonColor['bg']
         botonColor['bg'] = 'white'
-        self.app.after(500, lambda: botonColor.config(bg=color_original))
+        self.app.after(500-self.timer_dificultad, lambda: botonColor.config(bg=color_original))
 
         
     def deshabilitar_botones(self):
@@ -170,15 +176,15 @@ class SimonGame:
         
         
     def rondaSiguiente(self):
-        self.app.after(1000, self.mostrar_secuencia)
+        self.app.after(1000-self.timer_secuencia, self.mostrar_secuencia)
         self.secuencia_jugador = []
         self.secuencia.append(random.choice(self.colores))
         
 
     def mostrar_secuencia(self):
         for index, color in enumerate(self.secuencia):
-            self.app.after(1000 * index, lambda col=color: self.iluminar_boton(col))
-        self.app.after( 1000 * len(self.secuencia), self.habilitar_botones)
+            self.app.after( (1000 * index)-self.timer_secuencia, lambda col=color: self.iluminar_boton(col))
+        self.app.after( (1000 * len(self.secuencia))-self.timer_secuencia, self.habilitar_botones)
 
 
     def habilitar_botones(self):
