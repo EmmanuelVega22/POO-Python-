@@ -154,8 +154,6 @@ class SimonGame:
             if len(self.secuencia_jugador) == len(self.secuencia):
                 self.deshabilitar_botones()
                 self.app.after(1000-self.timer_secuencia , self.rondaSiguiente)
-                #after funciona como un temporizador ejecuta el rondaSiguiente luego de 1000seg o milisegundo
-                #para darle tiempo al jugador y ademas ejecutar otra cosas antes
                 self.puntaje +=1
                 self.timer = 30
                 self.label_puntaje.config(text=self.puntaje)
