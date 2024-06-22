@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido Despachante</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_sucursales.css') }}">
+</head>
+<body>
+<header class="header">
+    <div class="container logo-container">
+        <a href="#" class="logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}"></a>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{ url_for('saludo') }}">Inicio</a></li>
+                <li><a href="{{ url_for('despachante_registrar_paquete',sucursal_id=sucursal_id) }}">Registrar paquete</a></li>
+                <li><a href="{{ url_for('salidaTransporte',sucursal_id=sucursal_id) }}">Salida de transporte</a></li>
+                <li><a href="{{ url_for('seleccionar_transporte', sucursal_id=sucursal_id) }}">Llegada de transporte</a></li>
+                <li><a href="#">Asignar paquetes a repartidor</a></li>
+                <li><a href="{{ url_for('sucursales') }}">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section-principal">
+    <div class="containerSucursal">
+        <h1>Seleccione la Sucursal que desea Enviar Paquetes</h1>
+        <h2>Lista de Sucursales</h2>
+        <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Número</th>
+                <th>Provincia</th>
+                <th>Localidad</th>
+                <th>Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sucursal in sucursales %}
+            <tr>
+                <td>{{ sucursal.id }}</td>
+                <td>{{ sucursal.numero }}</td>
+                <td>{{ sucursal.provincia }}</td>
+                <td>{{ sucursal.localidad }}</td>
+                <td>{{ sucursal.direccion }}</td>
+                <td><a href="{{ url_for('seleccionar_paquetes', sucursal_id=sucursal.id) }}" class="sesion">Acceder</a> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 LogiPack - Entrega de Paquetes</p>
+    </div>
+</footer>
+</body>
+</html>
