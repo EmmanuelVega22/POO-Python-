@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido Despachante</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_sucursales.css') }}">
+</head>
+<body>
+
+<script>
+    {% if band == True %}
+  
+        alert('Llegada del Transporte actualizado exitosamente.');
+        window.location.href = "{{ url_for('principalDespachante',sucursal_id=sucursal_id) }}";
+
+            
+    {% endif %}
+    
+    {% if band == False %}
+    
+        alert('Error al registrar la llegada Transporte: {{ error }}');
+        window.location.href = "{{ url_for('seleccionar_transporte', sucursal_id=sucursal_id) }}";
+    {% endif %}
+    
+</script>
+
+<header class="header">
+    <div class="container logo-container">
+        <a href="#" class="logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}"></a>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{ url_for('saludo') }}">Inicio</a></li>
+                <li><a href="{{ url_for('despachante_registrar_paquete',sucursal_id=sucursal_id) }}">Registrar paquete</a></li>
+                <li><a href="{{ url_for('salidaTransporte',sucursal_id=sucursal_id) }}">Salida de transporte</a></li>
+                <li><a href="{{ url_for('seleccionar_transporte', sucursal_id=sucursal_id) }}">Llegada de transporte</a></li>
+                <li><a href="{{ url_for('seleccionar_repartidor', sucursal_id=sucursal_id) }}">Asignar paquetes a repartidor</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section-principal">
+    <div class="containerSucursal">
+        
+        
+        {% if transportes %}
+            <h1>Lista Transporte que llegaran a la sucursal  {{sucursal_id}}</h1>
+            <h2>Seleccione los Transporte que han llegado a la sucursal</h2>
+            <form action="{{ url_for('llegada_transporte') }}" method="POST">
+    
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Número Transporte</th>
+                            <th>Fecha/Hora Salida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transporte in transportes %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="transportes" value="{{ transporte.numerotransporte }}">
+                                </td>
+                                <td>{{ transporte.numerotransporte }}</td>
+                                <td>{{ transporte.fechahorasalida }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input type="hidden" name="sucursal_id" value="{{ sucursal_id }}">
+                <button type="submit" class="sesion">Registrar Llegada</button>
+            </form>
+        {% else %}
+                
+            <h1>No hay transporte registrados que llegaran a la sucursal {{sucursal_id}}</h1>
+            
+            <h3> ¿Que desea hacer?</h3>
+            
+            <a href="{{ url_for('principalDespachante',sucursal_id=sucursal_id) }}s">Volver al Menu</a>
+            <a href="{{ url_for('seleccionar_paquetes',sucursal_id=sucursal_id) }}">Registrar Nuevo Transporte</a>
+
+        {% endif %}
+
+
+        
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 LogiPack - Entrega de Paquetes</p>
+    </div>
+</footer>
+
+</body>
+</html>

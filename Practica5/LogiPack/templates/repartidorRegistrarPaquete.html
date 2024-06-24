@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido Despachante</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_sucursales.css') }}">
+</head>
+<body>
+
+<script>
+    {% if band == True %}
+  
+        alert('Paquete Entregado Exitosamente.');
+        window.location.href = "{{ url_for('bienvenidaRepartidor')";
+         
+    {% endif %}
+    
+    {% if band == False %}
+   
+        alert('Paquete No Entregado: {{error}}.');
+        window.location.href = "{{ url_for('buscar_paquete') }}";        
+   
+    {% endif %}
+    
+</script>
+
+<header class="header">
+    <div class="container logo-container">
+        <a href="#" class="logo"><img src="{{ url_for('static', filename='img/logo.jpg') }}"></a>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{ url_for('saludo') }}">Inicio</a></li>
+                <li><a href="{{ url_for('buscar_paquete',repartidor_id = repartidor_id) }}">Registrar Entrega de Paquete</a></li>
+                <li><a href="{{ url_for('saludo') }}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section-principal">
+    <div class="containerSucursal">
+        
+        {% if paquetes %}
+        
+            <h1>Paquete Encontrado</h1>
+            <h2>Seleccione 'Entregado' o 'No Entregado' y Razon de cada Opcion</h2>
+            <form action="{{ url_for('repartidor_registrar_paquete') }}" method="POST">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Número Envio</th>
+                            <th>Nombre Destinatario</th>
+                            <th>Direccion Destinatario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for paquete in paquetes %}
+                            <tr>
+                                <td>{{ paquete.numeroenvio }}</td>
+                                <td>{{ paquete.nomdestinatario }}</td>
+                                <td>{{ paquete.dirdestinatario }}</td>
+                                <td>
+                                    <input type="checkbox" name="entregado" value="True">
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="entregado" value="False">
+                                </td>                                                                
+                            </tr>
+                            <input type="hidden" name="numero_envio" value="{{ paquete.numeroenvio }}">
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input type="hidden" name="repartidor_id" value="{{ repartidor_id }}">
+                <button type="submit" class="sesion">Registrar</button>
+                
+                <textarea rows="4" cols="50" name="observacion">Observacion</textarea>
+            </form>
+        {% else %}
+        
+            
+            <h1>No hay paquetes sin entregar!!</h1>
+            
+            <a class="sesion" href="{{ url_for('principalDespachante',sucursal_id=sucursal_id) }}">Volver al Menu</a>
+            <a class= "sesion" href="{{ url_for('despachante_registrar_paquete',sucursal_id=sucursal_id) }}">Registrar Nuevos Paquetes</a>
+
+        {% endif %}
+        
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 LogiPack - Entrega de Paquetes</p>
+    </div>
+</footer>
+
+</body>
+</html>

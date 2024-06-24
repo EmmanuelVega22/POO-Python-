@@ -1,0 +1,244 @@
+/*************************************
+                General
+**************************************/
+
+
+body{
+	width: 100%;
+	font-family: georgia,times,serif;
+	color: #333;
+
+
+  	background-image: url('hero-bg.jpg');
+  	background-size: cover;
+	font-size: 1.2rem;
+	line-height: 1.6em;
+	margin: 0;
+}
+
+
+.mensaje h1{
+	line-height: 1.4em;
+	font-size: 1.4rem;
+}
+
+.mensaje p{
+
+	margin-bottom: 1em;
+}
+
+/*************************************
+                MENU
+**************************************/
+
+
+.header{
+
+	background:#333;
+	color:white;
+}
+
+.header a{
+	color:white;
+	text-decoration:none;
+  
+}
+
+
+
+.menu ul {
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+}
+
+.menu ul li{
+
+	display: inline-block;
+}
+
+.menu ul li a{
+
+	display: block;
+	padding: 0.5rem 1rem;
+	transition: all 0.4s linear;
+	border-radius: 5px;
+
+}
+
+.menu ul li a:hover{
+
+	background: #CB4335 ;
+
+}
+
+.logo{
+
+	letter-spacing: 15px;
+	font-size:1.3em;
+
+}
+
+.logo img{
+
+	width: 2.2em;
+}
+
+.logo-container{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.container{
+
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.sesion {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sesion:hover {
+    background: #CB4335;
+}
+
+
+/*************************************
+               SECTION - 1
+**************************************/
+
+.section-principal .mensaje{
+
+	height: 90%;
+	left: -5px;
+}
+
+.section-principal{
+	height: 120vh;
+	padding: 50px;
+	background:tomato;
+	color:rgb(240,240,240);
+	text-align: center;
+
+  	background-image: url('hero-bg.jpg');
+  	background-size: cover;
+}
+
+.section-principal .mensaje{
+
+	width: 300px;
+	height: auto;
+	float: left;
+	overflow: hidden;
+	
+}
+
+
+
+/*************************************
+              	FORMULARIO
+**************************************/
+
+
+
+
+.formulario{  
+  font-family: 'Noto Sans', sans-serif;
+  width: 400px; 
+  height: auto;
+  margin: 80px auto;
+  border-radius: 10px;  
+  padding-top: 30px;
+  padding-bottom: 5px;  
+  background-color: #EAECEE;
+  float: right; 
+  border: 0,2px solid black;
+
+}
+
+
+
+input{
+  background-color: #fbfbfb; 
+  width: 200px; 
+  height: 30px; 
+  border-radius: 5px;  
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: #ab4493; 
+  margin-top: 10px;  
+  padding-left: 10px;
+  margin-bottom: 5px; 
+}
+
+
+label{
+  display: block; 
+  float: center;  
+}
+
+span{
+  color: #ab4493; 
+}
+
+
+
+
+.formulario h1, .formulario h3{
+  font-size: 29px;  
+  text-align: center; 
+  padding-bottom: 5px; 
+  color: #ab4493;
+}
+
+
+
+
+
+.formulario p{
+  font-size: 14px; 
+  color: #0e0e0e; 
+}
+
+.formulario p>label{
+  font-size: 20px;
+}
+
+
+
+.formulario input:focus{
+  outline:0;
+  border: 1px solid #97d848;
+}
+
+
+.formulario textarea:focus{
+  outline:0;
+  border: 1px solid #97d848;
+}
+
+
+/*************************************
+              	FOOTER
+**************************************/
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1px;
+}
+
